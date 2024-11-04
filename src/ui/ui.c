@@ -38,15 +38,6 @@ static lv_obj_t *getLvglObjectFromIndex(int32_t index) {
     return ((lv_obj_t **)&objects)[index];
 }
 
-static const void *getLvglImageByName(const char *name) {
-    for (size_t imageIndex = 0; imageIndex < sizeof(images) / sizeof(ext_img_desc_t); imageIndex++) {
-        if (strcmp(images[imageIndex].name, name) == 0) {
-            return images[imageIndex].img_dsc;
-        }
-    }
-    return 0;
-}
-
 void loadScreen(enum ScreensEnum screenId) {
     currentScreen = screenId - 1;
     lv_obj_t *screen = getLvglObjectFromIndex(currentScreen);
