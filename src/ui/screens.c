@@ -23,18 +23,36 @@ static void event_handler_cb_main_main(lv_event_t *e) {
     if (event == LV_EVENT_SCREEN_LOAD_START) {
         // group: encoder_group
         lv_group_remove_all_objs(groups.encoder_group);
-        lv_group_add_obj(groups.encoder_group, objects.label1);
-        lv_group_add_obj(groups.encoder_group, objects.btn1);
-        lv_group_add_obj(groups.encoder_group, objects.usr1__obj1);
-        lv_group_add_obj(groups.encoder_group, objects.usr1__obj0__ubtn2);
-        lv_group_add_obj(groups.encoder_group, objects.usr1__obj2);
-        lv_group_add_obj(groups.encoder_group, objects.usr2__obj1);
-        lv_group_add_obj(groups.encoder_group, objects.usr2__obj0__ubtn2);
-        lv_group_add_obj(groups.encoder_group, objects.usr2__obj2);
+        lv_group_add_obj(groups.encoder_group, objects.obj0);
+    }
+    
+    if (event == LV_EVENT_SCREEN_LOADED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 1, 0, e);
     }
 }
 
-static void event_handler_cb_screen2_screen2(lv_event_t *e) {
+static void event_handler_cb_main_obj0(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_VALUE_CHANGED) {
+        lv_obj_t *ta = lv_event_get_target(e);
+        if (tick_value_change_obj != ta) {
+            int32_t value = lv_roller_get_selected(ta);
+            if (tick_value_change_obj != ta) {
+                assignIntegerProperty(flowState, 0, 3, value, "Failed to assign Selected in Roller widget");
+            }
+        }
+    }
+    
+    if (event == LV_EVENT_VALUE_CHANGED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 0, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_1_screen_1(lv_event_t *e) {
     lv_event_code_t event = lv_event_get_code(e);
     void *flowState = lv_event_get_user_data(e);
     
@@ -44,18 +62,193 @@ static void event_handler_cb_screen2_screen2(lv_event_t *e) {
     }
 }
 
-static void event_handler_cb_my_user_widget_obj2(lv_event_t *e) {
+static void event_handler_cb_screen_1_obj1(lv_event_t *e) {
     lv_event_code_t event = lv_event_get_code(e);
     void *flowState = lv_event_get_user_data(e);
     
-    if (event == LV_EVENT_VALUE_CHANGED) {
-        lv_obj_t *ta = lv_event_get_target(e);
-        if (tick_value_change_obj != ta) {
-            int32_t value = lv_dropdown_get_selected(ta);
-            if (tick_value_change_obj != ta) {
-                assignIntegerProperty(flowState, 3, 3, value, "Failed to assign Selected in Dropdown widget");
-            }
-        }
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_2_screen_2(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_2_obj2(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_3_screen_3(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_3_obj3(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_4_screen_4(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_4_obj4(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_5_screen_5(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_5_obj5(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_6_screen_6(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_6_obj6(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_7_screen_7(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_7_obj7(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_8_screen_8(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_8_obj8(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_9_screen_9(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_9_obj9(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
+    }
+}
+
+static void event_handler_cb_screen_10_screen_10(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_SCREEN_LOAD_START) {
+        // group: encoder_group
+        lv_group_remove_all_objs(groups.encoder_group);
+    }
+}
+
+static void event_handler_cb_screen_10_obj10(lv_event_t *e) {
+    lv_event_code_t event = lv_event_get_code(e);
+    void *flowState = lv_event_get_user_data(e);
+    
+    if (event == LV_EVENT_CLICKED) {
+        e->user_data = (void *)0;
+        flowPropagateValueLVGLEvent(flowState, 2, 0, e);
     }
 }
 
@@ -69,258 +262,442 @@ void create_screen_main() {
     {
         lv_obj_t *parent_obj = obj;
         {
-            // label1
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.label1 = obj;
-            lv_obj_set_pos(obj, 356, 38);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Hello, world!");
-        }
-        {
-            // btn1
-            lv_obj_t *obj = lv_btn_create(parent_obj);
-            objects.btn1 = obj;
-            lv_obj_set_pos(obj, 182, 81);
-            lv_obj_set_size(obj, 100, 50);
-            {
-                lv_obj_t *parent_obj = obj;
-                {
-                    lv_obj_t *obj = lv_label_create(parent_obj);
-                    lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                    lv_label_set_text(obj, "Button 1");
-                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                }
-            }
-        }
-        {
-            // btn2
-            lv_obj_t *obj = lv_btn_create(parent_obj);
-            objects.btn2 = obj;
-            lv_obj_set_pos(obj, 549, 73);
-            lv_obj_set_size(obj, 100, 50);
-            {
-                lv_obj_t *parent_obj = obj;
-                {
-                    lv_obj_t *obj = lv_label_create(parent_obj);
-                    lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                    lv_label_set_text(obj, "Button 2");
-                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                }
-            }
-        }
-        {
-            // usr1
-            lv_obj_t *obj = lv_obj_create(parent_obj);
-            objects.usr1 = obj;
-            lv_obj_set_pos(obj, 62, 276);
-            lv_obj_set_size(obj, 270, 110);
-            lv_obj_set_style_pad_left(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_top(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_right(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_bottom(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_bg_opa(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            create_user_widget_my_user_widget(obj, getFlowState(flowState, 6), 3);
-        }
-        {
-            // usr2
-            lv_obj_t *obj = lv_obj_create(parent_obj);
-            objects.usr2 = obj;
-            lv_obj_set_pos(obj, 473, 276);
-            lv_obj_set_size(obj, 270, 110);
-            lv_obj_set_style_pad_left(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_top(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_right(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_bottom(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_bg_opa(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            create_user_widget_my_user_widget(obj, getFlowState(flowState, 7), 11);
+            lv_obj_t *obj = lv_roller_create(parent_obj);
+            objects.obj0 = obj;
+            lv_obj_set_pos(obj, 307, 92);
+            lv_obj_set_size(obj, 186, 296);
+            lv_roller_set_options(obj, "Screen 1\nScreen 2\nScreen 3\nScreen 4\nScreen 5\nScreen 6\nScreen 7\nScreen 8\nScreen 9\nScreen 10", LV_ROLLER_MODE_NORMAL);
+            lv_obj_add_event_cb(obj, event_handler_cb_main_obj0, LV_EVENT_ALL, flowState);
+            lv_obj_set_style_text_font(obj, &lv_font_montserrat_24, LV_PART_MAIN | LV_STATE_DEFAULT);
         }
     }
+    
+    tick_screen_main();
 }
 
 void tick_screen_main() {
     void *flowState = getFlowState(0, 0);
-    tick_user_widget_my_user_widget(getFlowState(flowState, 6), 3);
-    tick_user_widget_my_user_widget(getFlowState(flowState, 7), 11);
-}
-
-void create_screen_screen2() {
-    void *flowState = getFlowState(0, 1);
-    lv_obj_t *obj = lv_obj_create(0);
-    objects.screen2 = obj;
-    lv_obj_set_pos(obj, 0, 0);
-    lv_obj_set_size(obj, 800, 480);
-    lv_obj_add_event_cb(obj, event_handler_cb_screen2_screen2, LV_EVENT_ALL, flowState);
     {
-        lv_obj_t *parent_obj = obj;
-        {
-            // label2
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.label2 = obj;
-            lv_obj_set_pos(obj, 360, 80);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Text");
-        }
-        {
-            // btn3
-            lv_obj_t *obj = lv_btn_create(parent_obj);
-            objects.btn3 = obj;
-            lv_obj_set_pos(obj, 325, 207);
-            lv_obj_set_size(obj, 100, 50);
-            {
-                lv_obj_t *parent_obj = obj;
-                {
-                    lv_obj_t *obj = lv_label_create(parent_obj);
-                    lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                    lv_label_set_text(obj, "Button");
-                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                }
-            }
-        }
-    }
-}
-
-void tick_screen_screen2() {
-    void *flowState = getFlowState(0, 1);
-}
-
-void create_user_widget_my_user_widget(lv_obj_t *parent_obj, void *flowState, int startWidgetIndex) {
-    lv_obj_t *obj = parent_obj;
-    {
-        lv_obj_t *parent_obj = obj;
-        {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            lv_obj_set_pos(obj, 0, 0);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Text");
-        }
-        {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 4] = obj;
-            lv_obj_set_pos(obj, 202, 0);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "");
-        }
-        {
-            lv_obj_t *obj = lv_obj_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 0] = obj;
-            lv_obj_set_pos(obj, 31, 16);
-            lv_obj_set_size(obj, 208, 50);
-            lv_obj_set_style_pad_left(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_top(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_right(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_pad_bottom(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_bg_opa(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            lv_obj_set_style_border_width(obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-            create_user_widget_my_user_widget_2(obj, getFlowState(flowState, 2), startWidgetIndex + 1);
-        }
-        {
-            lv_obj_t *obj = lv_dropdown_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 5] = obj;
-            lv_obj_set_pos(obj, 60, 68);
-            lv_obj_set_size(obj, 150, LV_SIZE_CONTENT);
-            lv_dropdown_set_options(obj, "Option 1\nOption 2\nOption 3");
-            lv_obj_add_event_cb(obj, event_handler_cb_my_user_widget_obj2, LV_EVENT_ALL, flowState);
-        }
-        {
-            lv_obj_t *obj = lv_label_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 6] = obj;
-            lv_obj_set_pos(obj, 221, 78);
-            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "");
-        }
-    }
-}
-
-void tick_user_widget_my_user_widget(void *flowState, int startWidgetIndex) {
-    {
-        const char *new_val = evalTextProperty(flowState, 0, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(((lv_obj_t **)&objects)[startWidgetIndex + 4]);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = ((lv_obj_t **)&objects)[startWidgetIndex + 4];
-            lv_label_set_text(((lv_obj_t **)&objects)[startWidgetIndex + 4], new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
-    tick_user_widget_my_user_widget_2(getFlowState(flowState, 2), startWidgetIndex + 1);
-    {
-        if (!(lv_obj_get_state(((lv_obj_t **)&objects)[startWidgetIndex + 5]) & LV_STATE_EDITED)) {
-            int32_t new_val = evalIntegerProperty(flowState, 3, 3, "Failed to evaluate Selected in Dropdown widget");
-            int32_t cur_val = lv_dropdown_get_selected(((lv_obj_t **)&objects)[startWidgetIndex + 5]);
+        if (!(lv_obj_get_state(objects.obj0) & LV_STATE_EDITED)) {
+            int32_t new_val = evalIntegerProperty(flowState, 0, 3, "Failed to evaluate Selected in Roller widget");
+            int32_t cur_val = lv_roller_get_selected(objects.obj0);
             if (new_val != cur_val) {
-                tick_value_change_obj = ((lv_obj_t **)&objects)[startWidgetIndex + 5];
-                lv_dropdown_set_selected(((lv_obj_t **)&objects)[startWidgetIndex + 5], new_val);
+                tick_value_change_obj = objects.obj0;
+                lv_roller_set_selected(objects.obj0, new_val, LV_ANIM_OFF);
                 tick_value_change_obj = NULL;
             }
         }
     }
-    {
-        const char *new_val = evalTextProperty(flowState, 4, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(((lv_obj_t **)&objects)[startWidgetIndex + 6]);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = ((lv_obj_t **)&objects)[startWidgetIndex + 6];
-            lv_label_set_text(((lv_obj_t **)&objects)[startWidgetIndex + 6], new_val);
-            tick_value_change_obj = NULL;
-        }
-    }
 }
 
-void create_user_widget_my_user_widget_2(lv_obj_t *parent_obj, void *flowState, int startWidgetIndex) {
-    lv_obj_t *obj = parent_obj;
+void create_screen_screen_1() {
+    void *flowState = getFlowState(0, 1);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_1 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_1_screen_1, LV_EVENT_ALL, flowState);
     {
         lv_obj_t *parent_obj = obj;
         {
-            // ubtn1
-            lv_obj_t *obj = lv_btn_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 1] = obj;
-            lv_obj_set_pos(obj, 0, 0);
-            lv_obj_set_size(obj, 100, 50);
-            {
-                lv_obj_t *parent_obj = obj;
-                {
-                    lv_obj_t *obj = lv_label_create(parent_obj);
-                    lv_obj_set_pos(obj, 0, 0);
-                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                    lv_label_set_text(obj, "Button");
-                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-                }
-            }
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 1");
         }
         {
-            // ubtn2
             lv_obj_t *obj = lv_btn_create(parent_obj);
-            ((lv_obj_t **)&objects)[startWidgetIndex + 0] = obj;
-            lv_obj_set_pos(obj, 108, 0);
+            objects.obj1 = obj;
+            lv_obj_set_pos(obj, 350, 353);
             lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_1_obj1, LV_EVENT_ALL, flowState);
             {
                 lv_obj_t *parent_obj = obj;
                 {
                     lv_obj_t *obj = lv_label_create(parent_obj);
-                    ((lv_obj_t **)&objects)[startWidgetIndex + 2] = obj;
                     lv_obj_set_pos(obj, 0, 0);
                     lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-                    lv_label_set_text(obj, "");
+                    lv_label_set_text(obj, "Back");
                     lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
                 }
             }
         }
     }
+    
+    tick_screen_screen_1();
 }
 
-void tick_user_widget_my_user_widget_2(void *flowState, int startWidgetIndex) {
+void tick_screen_screen_1() {
+    void *flowState = getFlowState(0, 1);
+}
+
+void create_screen_screen_2() {
+    void *flowState = getFlowState(0, 2);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_2 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_2_screen_2, LV_EVENT_ALL, flowState);
     {
-        const char *new_val = evalTextProperty(flowState, 3, 3, "Failed to evaluate Text in Label widget");
-        const char *cur_val = lv_label_get_text(((lv_obj_t **)&objects)[startWidgetIndex + 2]);
-        if (strcmp(new_val, cur_val) != 0) {
-            tick_value_change_obj = ((lv_obj_t **)&objects)[startWidgetIndex + 2];
-            lv_label_set_text(((lv_obj_t **)&objects)[startWidgetIndex + 2], new_val);
-            tick_value_change_obj = NULL;
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 1");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj2 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_2_obj2, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
         }
     }
+    
+    tick_screen_screen_2();
+}
+
+void tick_screen_screen_2() {
+    void *flowState = getFlowState(0, 2);
+}
+
+void create_screen_screen_3() {
+    void *flowState = getFlowState(0, 3);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_3 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_3_screen_3, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 1");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj3 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_3_obj3, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_3();
+}
+
+void tick_screen_screen_3() {
+    void *flowState = getFlowState(0, 3);
+}
+
+void create_screen_screen_4() {
+    void *flowState = getFlowState(0, 4);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_4 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_4_screen_4, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 4");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj4 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_4_obj4, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_4();
+}
+
+void tick_screen_screen_4() {
+    void *flowState = getFlowState(0, 4);
+}
+
+void create_screen_screen_5() {
+    void *flowState = getFlowState(0, 5);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_5 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_5_screen_5, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 5");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj5 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_5_obj5, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_5();
+}
+
+void tick_screen_screen_5() {
+    void *flowState = getFlowState(0, 5);
+}
+
+void create_screen_screen_6() {
+    void *flowState = getFlowState(0, 6);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_6 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_6_screen_6, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 6");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj6 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_6_obj6, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_6();
+}
+
+void tick_screen_screen_6() {
+    void *flowState = getFlowState(0, 6);
+}
+
+void create_screen_screen_7() {
+    void *flowState = getFlowState(0, 7);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_7 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_7_screen_7, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 7");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj7 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_7_obj7, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_7();
+}
+
+void tick_screen_screen_7() {
+    void *flowState = getFlowState(0, 7);
+}
+
+void create_screen_screen_8() {
+    void *flowState = getFlowState(0, 8);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_8 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_8_screen_8, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 8");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj8 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_8_obj8, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_8();
+}
+
+void tick_screen_screen_8() {
+    void *flowState = getFlowState(0, 8);
+}
+
+void create_screen_screen_9() {
+    void *flowState = getFlowState(0, 9);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_9 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_9_screen_9, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 9");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj9 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_9_obj9, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_9();
+}
+
+void tick_screen_screen_9() {
+    void *flowState = getFlowState(0, 9);
+}
+
+void create_screen_screen_10() {
+    void *flowState = getFlowState(0, 10);
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.screen_10 = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 800, 480);
+    lv_obj_add_event_cb(obj, event_handler_cb_screen_10_screen_10, LV_EVENT_ALL, flowState);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 372, 232);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Screen 10");
+        }
+        {
+            lv_obj_t *obj = lv_btn_create(parent_obj);
+            objects.obj10 = obj;
+            lv_obj_set_pos(obj, 350, 353);
+            lv_obj_set_size(obj, 100, 50);
+            lv_obj_add_event_cb(obj, event_handler_cb_screen_10_obj10, LV_EVENT_ALL, flowState);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_label_set_text(obj, "Back");
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                }
+            }
+        }
+    }
+    
+    tick_screen_screen_10();
+}
+
+void tick_screen_screen_10() {
+    void *flowState = getFlowState(0, 10);
 }
 
 
@@ -332,9 +709,31 @@ void ui_create_groups() {
     }
 }
 
-static const char *screen_names[] = { "Main", "Screen2", "my_user_widget", "my_user_widget_2" };
-static const char *object_names[] = { "main", "screen2", "usr1", "usr1__obj0", "usr1__obj0__ubtn2", "usr1__obj0__ubtn1", "usr1__obj0__obj0", "usr1__obj1", "usr1__obj2", "usr1__obj3", "usr2", "usr2__obj0", "usr2__obj0__ubtn2", "usr2__obj0__ubtn1", "usr2__obj0__obj0", "usr2__obj1", "usr2__obj2", "usr2__obj3", "label1", "btn1", "btn2", "label2", "btn3" };
+static const char *screen_names[] = { "Main", "Screen 1", "Screen 2", "Screen 3", "Screen 4", "Screen 5", "Screen 6", "Screen 7", "Screen 8", "Screen 9", "Screen 10" };
+static const char *object_names[] = { "main", "screen_1", "screen_2", "screen_3", "screen_4", "screen_5", "screen_6", "screen_7", "screen_8", "screen_9", "screen_10", "obj0", "obj1", "obj2", "obj3", "obj4", "obj5", "obj6", "obj7", "obj8", "obj9", "obj10" };
 static const char *group_names[] = { "encoder_group" };
+
+
+typedef void (*tick_screen_func_t)();
+tick_screen_func_t tick_screen_funcs[] = {
+    tick_screen_main,
+    tick_screen_screen_1,
+    tick_screen_screen_2,
+    tick_screen_screen_3,
+    tick_screen_screen_4,
+    tick_screen_screen_5,
+    tick_screen_screen_6,
+    tick_screen_screen_7,
+    tick_screen_screen_8,
+    tick_screen_screen_9,
+    tick_screen_screen_10,
+};
+void tick_screen(int screen_index) {
+    tick_screen_funcs[screen_index]();
+}
+void tick_screen_by_id(enum ScreensEnum screenId) {
+    tick_screen_funcs[screenId - 1]();
+}
 
 void create_screens() {
     ui_create_groups();
@@ -348,18 +747,14 @@ void create_screens() {
     lv_disp_set_theme(dispp, theme);
     
     create_screen_main();
-    create_screen_screen2();
-}
-
-typedef void (*tick_screen_func_t)();
-
-tick_screen_func_t tick_screen_funcs[] = {
-    tick_screen_main,
-    tick_screen_screen2,
-    0,
-    0,
-};
-
-void tick_screen(int screen_index) {
-    tick_screen_funcs[screen_index]();
+    create_screen_screen_1();
+    create_screen_screen_2();
+    create_screen_screen_3();
+    create_screen_screen_4();
+    create_screen_screen_5();
+    create_screen_screen_6();
+    create_screen_screen_7();
+    create_screen_screen_8();
+    create_screen_screen_9();
+    create_screen_screen_10();
 }
