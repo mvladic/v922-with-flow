@@ -53,6 +53,7 @@ void setup() {
     //lv_indev_set_group(kb_indev, groups.keyboard_group);
     
     ui_init();
+    ui_tick();
 }
 
 void loop() {

@@ -15,7 +15,8 @@ extern "C" {
 // Flow global variables
 
 enum FlowGlobalVariables {
-    FLOW_GLOBAL_VARIABLE_NONE
+    FLOW_GLOBAL_VARIABLE_SEL_SCREEN = 0,
+    FLOW_GLOBAL_VARIABLE_SCREENS = 1
 };
 
 // Native global variables
