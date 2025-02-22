@@ -63,5 +63,5 @@ void loop() {
 int main(int argc, char ** argv) {
     setup();
 
-    emscripten_set_main_loop(loop, 0, false);
+    emscripten_set_main_loop(loop, 100, false);
 }
