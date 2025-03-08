@@ -15,6 +15,8 @@
 #include <emscripten.h>
 #include "lvgl/lvgl.h"
 
+#define UNUSED(x) (void)(x)
+
 /*On OSX SDL needs different handling*/
 #if defined(__APPLE__) && defined(TARGET_OS_MAC)
 # if __APPLE__ && TARGET_OS_MAC
@@ -33,7 +35,9 @@ lv_indev_t *kb_indev;
 static void hal_init(void)
 {
     lv_display_t * disp = lv_sdl_window_create(monitor_hor_res, monitor_ver_res);
+    UNUSED(disp);
     lv_indev_t *mouse_indev = lv_sdl_mouse_create();
+    UNUSED(mouse_indev);
     enc_indev = lv_sdl_mousewheel_create();
     kb_indev = lv_sdl_keyboard_create();
 }
@@ -62,6 +66,8 @@ void loop() {
 }
 
 int main(int argc, char ** argv) {
+    UNUSED(argc);
+    UNUSED(argv);
     setup();
 
     emscripten_set_main_loop(loop, 100, false);
