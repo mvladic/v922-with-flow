@@ -9,16 +9,28 @@ extern "C" {
 
 typedef struct _objects_t {
     lv_obj_t *main;
+    lv_obj_t *page2;
+    lv_obj_t *obj0;
+    lv_obj_t *obj1;
+    lv_obj_t *obj2;
+    lv_obj_t *obj3;
 } objects_t;
 
 extern objects_t objects;
 
 enum ScreensEnum {
     SCREEN_ID_MAIN = 1,
+    SCREEN_ID_PAGE2 = 2,
 };
 
 void create_screen_main();
 void tick_screen_main();
+
+void create_screen_page2();
+void tick_screen_page2();
+
+void create_user_widget_uw_btnmatrix(lv_obj_t *parent_obj, void *flowState, int startWidgetIndex);
+void tick_user_widget_uw_btnmatrix(void *flowState, int startWidgetIndex);
 
 void tick_screen_by_id(enum ScreensEnum screenId);
 void tick_screen(int screen_index);
