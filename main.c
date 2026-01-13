@@ -57,10 +57,17 @@ void setup() {
     //lv_indev_set_group(kb_indev, groups.keyboard_group);
     
     ui_init();
-    ui_tick();
 }
 
 void loop() {
+    static bool inited = false;
+    if (!inited) {
+        setup();
+        /* Manually force timing mode to RAF (1) after setup.
+         * This overrides SDL's internal timing settings which trigger the warning. */
+        emscripten_set_main_loop_timing(1, 1);
+        inited = true;
+    }
     lv_task_handler();
     ui_tick();
 }
@@ -68,7 +75,9 @@ void loop() {
 int main(int argc, char ** argv) {
     UNUSED(argc);
     UNUSED(argv);
-    setup();
-
-    emscripten_set_main_loop(loop, 100, false);
+    /* Set the main loop to run with requestAnimationFrame (fps=0)
+     * and stop execution of main (simulate_infinite_loop=1).
+     * Initialization (setup) will happen on the first frame. */
+    emscripten_set_main_loop(loop, 0, 1);
+    return 0;
 }
